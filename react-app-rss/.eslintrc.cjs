@@ -9,19 +9,15 @@ module.exports = {
     'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
-  overrides: [
-  ],
+  overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: './react-app-rss/tsconfig.json',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
-  rules: {
-  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  rules: {},
 };
