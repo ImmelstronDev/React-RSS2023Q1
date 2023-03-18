@@ -16,7 +16,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './react-app-rss/tsconfig.json',
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {},

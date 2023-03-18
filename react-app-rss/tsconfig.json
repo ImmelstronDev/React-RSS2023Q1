@@ -18,6 +18,8 @@
   },
   "include": [
     ".eslintrc.cjs",
-    "src"],
+    "./src/**/*",
+    "styled.d.ts",
+    "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
