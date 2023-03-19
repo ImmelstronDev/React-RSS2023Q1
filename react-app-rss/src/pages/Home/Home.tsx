@@ -1,6 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Home() {
-  return <h1>React components!</h1>;
+class Home extends React.PureComponent {
+  render(): React.ReactNode {
+    return (
+      <div>
+        <Link to="/">HomePage</Link>
+        <Link to="/aboutus">AboutUs</Link>
+      </div>
+    );
+  }
 }
 export default Home;
