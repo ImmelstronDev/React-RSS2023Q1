@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-function NotFound() {
-  return <h1>NotFound</h1>;
+class NotFound extends React.PureComponent {
+  render(): React.ReactNode {
+    return <h1>NotFound</h1>;
+  }
 }
 export default NotFound;

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, Component, ReactNode } from 'react';
+import cls from './input.module.scss';
 
 interface InputState {
   value: string;
@@ -41,8 +42,13 @@ class Input extends Component<InputProps, InputState> {
   render(): ReactNode {
     const { value } = this.state;
     return (
-      <div>
-        <input type="text" value={value} onChange={this.changeHandler} />
+      <div className={cls.input_container}>
+        <input
+          type="text"
+          className={cls.search_input}
+          value={value}
+          onChange={this.changeHandler}
+        />
       </div>
     );
   }

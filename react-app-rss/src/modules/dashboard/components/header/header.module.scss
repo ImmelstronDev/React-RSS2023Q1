@@ -1,3 +1,11 @@
 .abc {
-  color: red;
+  color: white;
+}
+a {
+  padding: 5px;
+}
+
+a:link,
+:visited {
+  color: white;
 }
