@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { WithRouterProps } from '../../../../HOC';
+import cls from './header.module.scss';
 
 class Header extends React.PureComponent<WithRouterProps> {
   render(): React.ReactNode {
@@ -22,7 +23,7 @@ class Header extends React.PureComponent<WithRouterProps> {
 
     return (
       <div>
-        <h1>{title}</h1>
+        <h1 className={cls.abc}>{title}</h1>
         <Link to="/">HomePage</Link>
         <Link to="/aboutus">AboutUs</Link>
       </div>

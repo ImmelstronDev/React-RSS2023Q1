@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Navigate, Route } from 'react-router';
 import { Routes } from 'react-router-dom';
 import AboutUs from './pages/About_us/AboutUs';
 import Home from './pages/Home/Home';
@@ -9,7 +9,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="/404" element={<NotFound />} />
+      <Route path="*" element={<Navigate to="/404" replace />} />
       <Route path="/aboutus" element={<AboutUs />} />
     </Routes>
   );

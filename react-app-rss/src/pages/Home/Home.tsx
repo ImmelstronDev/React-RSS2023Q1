@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Input from '../../modules/common/input/input';
 
 class Home extends React.PureComponent {
   render(): React.ReactNode {
     return (
       <div>
-        <Link to="/">HomePage</Link>
-        <Link to="/aboutus">AboutUs</Link>
+        <Input />
       </div>
     );
   }
