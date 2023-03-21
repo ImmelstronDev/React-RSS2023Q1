@@ -12,14 +12,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTest.ts',
-    // you might want to disable it, if you don't have tests that rely on CSS
-    // since parsing CSS is slow
     css: true,
     coverage: {
       include: ['src/*/'],
       exclude: ['src/*.{ts,tsx}'],
       enabled: true,
-      provider: 'c8', // or istanbul'
+      provider: 'c8',
       all: true,
       skipFull: true,
       reporter: 'text',

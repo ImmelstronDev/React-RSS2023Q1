@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import cls from './card.module.scss';
 
 export interface CardData {
@@ -14,7 +14,7 @@ interface CartDataProps {
   data: CardData;
 }
 
-class Card extends React.PureComponent<CartDataProps> {
+class Card extends PureComponent<CartDataProps> {
   render() {
     const {
       data: { img, name, price, ammo, damage, distance, reload },

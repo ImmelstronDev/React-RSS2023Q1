@@ -7,10 +7,7 @@ import AppRouter from './AppRouter';
 
 describe('App', () => {
   it('Renders React components!', () => {
-    // Arrange
     render(<AppRouter />);
-    // act
-    // expect
     expect(
       screen.getByRole('heading', {
         level: 1,
