@@ -29,7 +29,9 @@ class CardList extends Component<CardListProps, CardListState> {
       <div className={cls.wrapper}>
         <ul className={cls.card_container}>
           {data?.map((cart) => (
-            <Card key={cart.name} data={cart} />
+            <li key={cart.name}>
+              <Card key={cart.name} data={cart} />
+            </li>
           ))}
         </ul>
       </div>

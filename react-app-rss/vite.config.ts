@@ -15,5 +15,14 @@ export default defineConfig({
     // you might want to disable it, if you don't have tests that rely on CSS
     // since parsing CSS is slow
     css: true,
+    coverage: {
+      include: ['src/*/'],
+      exclude: ['src/*.{ts,tsx}'],
+      enabled: true,
+      provider: 'c8', // or istanbul'
+      all: true,
+      skipFull: true,
+      reporter: 'text',
+    },
   },
 });

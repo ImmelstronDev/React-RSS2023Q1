@@ -5,14 +5,10 @@ import App from './App';
 import { HOCProps } from './HOC';
 import Header from './modules/dashboard/components/header/header';
 import './main.scss';
-
-const HeaderWithProps = HOCProps(Header);
+import AppRouter from './AppRouter';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <HeaderWithProps />
-      <App />
-    </BrowserRouter>
+    <AppRouter />
   </React.StrictMode>
 );
