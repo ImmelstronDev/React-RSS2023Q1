@@ -5,6 +5,7 @@ export interface CardData {
   img: string;
   name: string;
   price: string;
+  caliber: string;
   ammo: string;
   damage: string;
   distance: string;
@@ -17,7 +18,7 @@ interface CartDataProps {
 class Card extends PureComponent<CartDataProps> {
   render() {
     const {
-      data: { img, name, price, ammo, damage, distance, reload },
+      data: { img, name, price, caliber, ammo, damage, distance, reload },
     } = this.props;
 
     return (
@@ -26,6 +27,7 @@ class Card extends PureComponent<CartDataProps> {
         <div className={cls.description_container}>
           <span>Name: {name}</span>
           <span>price: {price}</span>
+          <span>caliber: {caliber}</span>
           <span>ammunition: {ammo}</span>
           <span>damage: {damage}</span>
           <span>effective distance: {distance}</span>
