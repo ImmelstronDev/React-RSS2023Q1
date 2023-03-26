@@ -12,8 +12,8 @@ class App extends React.PureComponent {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/404" element={<NotFound />} />
-        <Route path="/form" element={<AddedForm />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
+        <Route path="/form" element={<AddedForm />} />
         <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
     );

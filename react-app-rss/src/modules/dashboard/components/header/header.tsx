@@ -16,6 +16,9 @@ class Header extends React.PureComponent<WithRouterProps> {
       case '/aboutus':
         title = 'About Us';
         break;
+      case '/form':
+        title = 'Added Form';
+        break;
       default:
         title = 'Not Found';
         break;
