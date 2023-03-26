@@ -4,12 +4,12 @@ import cls from './card.module.scss';
 export interface CardData {
   img: string;
   name: string;
-  price: string;
+  price: number;
   caliber: string;
   ammo: string;
-  damage: string;
-  distance: string;
-  reload: string;
+  damage: number;
+  distance: number;
+  reload: number;
 }
 interface CartDataProps {
   data: CardData;
@@ -26,12 +26,12 @@ class Card extends PureComponent<CartDataProps> {
         <img src={img} alt="weapon" />
         <div className={cls.description_container}>
           <span>Name: {name}</span>
-          <span>price: {price}</span>
+          <span>price: {price}$</span>
           <span>caliber: {caliber}</span>
           <span>ammunition: {ammo}</span>
           <span>damage: {damage}</span>
-          <span>effective distance: {distance}</span>
-          <span>reload: {reload}</span>
+          <span>effective distance: {distance}m</span>
+          <span>reload: {reload}s</span>
         </div>
       </div>
     );
