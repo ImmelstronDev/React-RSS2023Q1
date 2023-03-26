@@ -26,6 +26,7 @@ class Header extends React.PureComponent<WithRouterProps> {
         <h1 className={cls.abc}>{title}</h1>
         <Link to="/">HomePage</Link>
         <Link to="/aboutus">AboutUs</Link>
+        <Link to="/form">AddedForm</Link>
       </div>
     );
   }
