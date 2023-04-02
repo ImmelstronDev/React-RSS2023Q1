@@ -19,7 +19,12 @@ interface EL<P> {
 
 export default function NewForm() {
   const [data, setData] = useState<EL<string>[]>([]);
-  const { register, handleSubmit, reset } = useForm<EL<FileList>>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<EL<FileList>>();
 
   const onSubmit = (el: EL<FileList>) => {
     const img = URL.createObjectURL(el.img[0]);
@@ -29,33 +34,71 @@ export default function NewForm() {
     reset();
   };
 
-  const { name, onChange, ref } = register('name');
+  const { name, onChange, ref } = register('name', {
+    required: 'required to fill out',
+  });
   const {
     name: priceName,
     onChange: priceChange,
     ref: priceRef,
-  } = register('price', { valueAsNumber: true });
-  const { name: caliberName, onChange: caliberChange, ref: caliberRef } = register('caliber');
-  const { name: ammoName, onChange: ammoChange, ref: ammoRef } = register('ammo');
+  } = register('price', { valueAsNumber: true, required: 'required to fill out' });
+  const {
+    name: caliberName,
+    onChange: caliberChange,
+    ref: caliberRef,
+  } = register('caliber', {
+    required: 'you must choose a caliber',
+  });
+  const {
+    name: ammoName,
+    onChange: ammoChange,
+    ref: ammoRef,
+  } = register('ammo', {
+    required: 'required to fill out',
+  });
   const {
     name: damageName,
     onChange: damageChange,
     ref: damageRef,
-  } = register('damage', { valueAsNumber: true });
+  } = register('damage', { valueAsNumber: true, required: 'required to fill out' });
   const {
     name: distanceName,
     onChange: distanceChange,
     ref: distanceRef,
-  } = register('distance', { valueAsNumber: true });
+  } = register('distance', { valueAsNumber: true, required: 'required to fill out' });
   const {
     name: reloadName,
     onChange: reloadChange,
     ref: reloadRef,
-  } = register('reload', { valueAsNumber: true });
-  const { name: imgName, onChange: imgChange, ref: imgRef } = register('img');
-  const { name: dateName, onChange: dateChange, ref: dateRef } = register('date');
-  const { name: radioName, onChange: radioChange, ref: radioRef } = register('radio');
-  const { name: checkName, onChange: checkChange, ref: checkRef } = register('checkbox');
+  } = register('reload', { valueAsNumber: true, required: 'required to fill out' });
+  const {
+    name: imgName,
+    onChange: imgChange,
+    ref: imgRef,
+  } = register('img', {
+    required: 'you must upload an image',
+  });
+  const {
+    name: dateName,
+    onChange: dateChange,
+    ref: dateRef,
+  } = register('date', {
+    required: 'you must select a creation date',
+  });
+  const {
+    name: radioName,
+    onChange: radioChange,
+    ref: radioRef,
+  } = register('radio', {
+    required: 'you must choose',
+  });
+  const {
+    name: checkName,
+    onChange: checkChange,
+    ref: checkRef,
+  } = register('checkbox', {
+    required: 'required to fill out',
+  });
 
   return (
     <div className={cls.container}>
@@ -64,6 +107,7 @@ export default function NewForm() {
           <label htmlFor="name">
             Name: <input type="text" id="name" name={name} onChange={onChange} ref={ref} />
           </label>
+          <div className={cls.error}> {errors?.name && <p>{errors?.name?.message}</p>} </div>
         </div>
         <div>
           <label htmlFor="price">
@@ -76,6 +120,7 @@ export default function NewForm() {
               ref={priceRef}
             />
           </label>
+          <div className={cls.error}>{errors?.price && <p>{errors?.price?.message}</p>}</div>
         </div>
         <div>
           <label htmlFor="caliber">
@@ -87,6 +132,10 @@ export default function NewForm() {
               <option value="long">long</option>
             </select>
           </label>
+          <div className={cls.error}>
+            {' '}
+            {errors?.caliber && <p> {errors?.caliber?.message} </p>}{' '}
+          </div>
         </div>
         <div>
           <label htmlFor="ammunition">
@@ -99,6 +148,7 @@ export default function NewForm() {
               ref={ammoRef}
             />
           </label>
+          <div className={cls.error}> {errors?.ammo && <p> {errors?.ammo?.message} </p>} </div>
         </div>
         <div>
           <label htmlFor="damage">
@@ -111,6 +161,7 @@ export default function NewForm() {
               ref={damageRef}
             />
           </label>
+          <div className={cls.error}> {errors?.damage && <p> {errors?.damage?.message} </p>} </div>
         </div>
         <div>
           <label htmlFor="distance">
@@ -123,6 +174,10 @@ export default function NewForm() {
               ref={distanceRef}
             />
           </label>
+          <div className={cls.error}>
+            {' '}
+            {errors?.distance && <p> {errors?.damage?.message} </p>}{' '}
+          </div>
         </div>
         <div>
           <label htmlFor="reload">
@@ -135,6 +190,7 @@ export default function NewForm() {
               ref={reloadRef}
             />
           </label>
+          <div className={cls.error}> {errors?.reload && <p> {errors?.reload?.message} </p>} </div>
         </div>
         <div>
           <label htmlFor="file">
@@ -148,6 +204,7 @@ export default function NewForm() {
               ref={imgRef}
             />
           </label>
+          <div className={cls.error}> {errors?.img && <p> {errors?.img?.message} </p>} </div>
         </div>
         <div>
           <label htmlFor="createDate">
@@ -160,6 +217,7 @@ export default function NewForm() {
               ref={dateRef}
             />
           </label>
+          <div className={cls.error}> {errors?.date && <p> {errors?.date?.message} </p>} </div>
         </div>
         <div>
           {' '}
@@ -186,6 +244,7 @@ export default function NewForm() {
               ref={radioRef}
             />
           </label>
+          <div className={cls.error}> {errors?.radio && <p> {errors?.radio?.message} </p>} </div>
         </div>
         <div>
           <label htmlFor="check">
@@ -199,6 +258,10 @@ export default function NewForm() {
               ref={checkRef}
             />
           </label>
+          <div className={cls.error}>
+            {' '}
+            {errors?.checkbox && <p> {errors?.checkbox?.message} </p>}{' '}
+          </div>
         </div>
         <input type="submit" />
       </form>
