@@ -6,15 +6,13 @@ import Header from './modules/dashboard/components/header/header';
 
 const HeaderWithProps = HOCProps(Header);
 
-class AppRouter extends React.PureComponent {
-  render(): React.ReactNode {
-    return (
-      <BrowserRouter>
-        <HeaderWithProps />
-        <App />
-      </BrowserRouter>
-    );
-  }
+function AppRouter() {
+  return (
+    <BrowserRouter>
+      <HeaderWithProps />
+      <App />
+    </BrowserRouter>
+  );
 }
 
 export default AppRouter;

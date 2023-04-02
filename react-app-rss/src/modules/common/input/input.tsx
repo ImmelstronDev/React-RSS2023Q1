@@ -1,57 +1,31 @@
-import React, { ChangeEvent, Component, ReactNode } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import cls from './input.module.scss';
 
-interface InputState {
-  value: string;
-}
+function Input() {
+  const key = 'search';
+  const [value, setValue] = useState<string>(localStorage.getItem(key) ?? '');
+  const inputValue = useRef(value);
 
-interface InputProps {
-  [key: string]: never;
-}
-class Input extends Component<InputProps, InputState> {
-  constructor(props: InputProps) {
-    super(props);
-    this.state = { value: localStorage.getItem('key') ?? '' };
+  useEffect(() => {
+    return () => {
+      localStorage.setItem(key, inputValue.current);
+    };
+  }, [key]);
 
-    this.onUnload = this.onUnload.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
-  }
+  useEffect(() => {
+    inputValue.current = value;
+  }, [value]);
 
-  componentDidMount(): void {
-    window.addEventListener('beforeunload', this.onUnload);
-  }
+  const handlerInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value: serchValue } = e.target;
+    setValue(serchValue);
+  };
 
-  componentWillUnmount(): void {
-    const { value } = this.state;
-    localStorage.setItem('key', value);
-    window.removeEventListener('beforeunload', this.onUnload);
-  }
-
-  onUnload() {
-    const { value } = this.state;
-    localStorage.setItem('key', value);
-  }
-
-  changeHandler(e: ChangeEvent<HTMLInputElement>) {
-    const { value } = e.target;
-    this.setState(() => {
-      return { value };
-    });
-  }
-
-  render(): ReactNode {
-    const { value } = this.state;
-    return (
-      <div className={cls.input_container}>
-        <input
-          type="text"
-          className={cls.search_input}
-          value={value}
-          onChange={this.changeHandler}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className={cls.input_container}>
+      <input type="text" className={cls.search_input} value={value} onChange={handlerInput} />
+    </div>
+  );
 }
 
 export default Input;
