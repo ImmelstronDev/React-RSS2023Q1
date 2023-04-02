@@ -1,4 +1,3 @@
-import { PureComponent } from 'react';
 import cls from './card.module.scss';
 
 export interface CardData {
@@ -15,27 +14,25 @@ interface CartDataProps {
   data: CardData;
 }
 
-class Card extends PureComponent<CartDataProps> {
-  render() {
-    const {
-      data: { img, name, price, caliber, ammo, damage, distance, reload },
-    } = this.props;
+function Card(props: CartDataProps) {
+  const {
+    data: { img, name, price, caliber, ammo, damage, distance, reload },
+  } = props;
 
-    return (
-      <div className={cls.card}>
-        <img src={img} alt="weapon" />
-        <div className={cls.description_container}>
-          <span>Name: {name}</span>
-          <span>price: {price}$</span>
-          <span>caliber: {caliber}</span>
-          <span>ammunition: {ammo}</span>
-          <span>damage: {damage}</span>
-          <span>effective distance: {distance}m</span>
-          <span>reload: {reload}s</span>
-        </div>
+  return (
+    <div className={cls.card}>
+      <img src={img} alt="weapon" />
+      <div className={cls.description_container}>
+        <span>Name: {name}</span>
+        <span>price: {price}$</span>
+        <span>caliber: {caliber}</span>
+        <span>ammunition: {ammo}</span>
+        <span>damage: {damage}</span>
+        <span>effective distance: {distance}m</span>
+        <span>reload: {reload}s</span>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Card;
