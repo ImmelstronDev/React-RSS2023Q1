@@ -17,7 +17,7 @@ interface EL<P> {
   checkbox: boolean;
 }
 
-export default function NewForm() {
+export default function NewForm(): JSX.Element {
   const [data, setData] = useState<EL<string>[]>([]);
   const {
     register,
@@ -221,7 +221,7 @@ export default function NewForm() {
         </div>
         <div>
           {' '}
-          Would you like to receive our newsletter
+          Would you like to receive our newsletter?
           <label htmlFor="yes">
             Yes
             <input

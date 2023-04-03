@@ -14,7 +14,7 @@ interface CartDataProps {
   data: CardData;
 }
 
-function Card(props: CartDataProps) {
+function Card(props: CartDataProps): JSX.Element {
   const {
     data: { img, name, price, caliber, ammo, damage, distance, reload },
   } = props;

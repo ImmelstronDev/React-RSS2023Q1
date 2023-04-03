@@ -6,7 +6,7 @@ import Header from './modules/dashboard/components/header/header';
 
 const HeaderWithProps = HOCProps(Header);
 
-function AppRouter() {
+function AppRouter(): JSX.Element {
   return (
     <BrowserRouter>
       <HeaderWithProps />

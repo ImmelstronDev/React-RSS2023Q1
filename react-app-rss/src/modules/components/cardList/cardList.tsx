@@ -2,7 +2,7 @@ import Card from '../card/card';
 import Data from '../../../assets/mockData';
 import cls from './cardList.module.scss';
 
-function CardList() {
+function CardList(): JSX.Element {
   return (
     <div className={cls.wrapper}>
       <ul className={cls.card_container}>

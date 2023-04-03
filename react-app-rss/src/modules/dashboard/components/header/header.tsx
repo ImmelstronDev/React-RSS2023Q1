@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { WithRouterProps } from '../../../../HOC';
 import cls from './header.module.scss';
 
-function Header(props: WithRouterProps) {
+function Header(props: WithRouterProps): JSX.Element {
   const {
     location: { pathname },
   } = props;

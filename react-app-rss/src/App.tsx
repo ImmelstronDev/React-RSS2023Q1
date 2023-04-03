@@ -6,7 +6,7 @@ import AboutUs from './pages/About_us/AboutUs';
 import Home from './pages/Home/Home';
 import NotFound from './pages/Not_found/NotFound';
 
-function App() {
+function App(): JSX.Element {
   return (
     <Routes>
       <Route path="/" element={<Home />} />

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import cls from './input.module.scss';
 
-function Input() {
+function Input(): JSX.Element {
   const key = 'search';
   const [value, setValue] = useState<string>(localStorage.getItem(key) ?? '');
   const inputValue = useRef(value);

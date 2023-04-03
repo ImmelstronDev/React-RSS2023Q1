@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { test } from 'vitest';
-import FormData from './form';
+import NewForm from './form';
 
 describe('FormData', () => {
   test('render form page', () => {
-    render(<FormData />);
+    render(<NewForm />);
     expect(screen.getByText('Name:')).toBeInTheDocument();
     expect(screen.getByText('Price:')).toBeInTheDocument();
     expect(screen.getByText('Caliber:')).toBeInTheDocument();
