@@ -1,5 +1,4 @@
 import Card, { CardData } from '../card/card';
-import Data from '../../../assets/mockData';
 import cls from './cardList.module.scss';
 
 interface CardListData {
