@@ -4,7 +4,11 @@
 }
 
 .card {
+  cursor: pointer;
   padding: 5px;
   color: white;
   border: 1px solid white;
+  :hover {
+    scale: 1.01;
+  }
 }

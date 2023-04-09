@@ -25,7 +25,8 @@ function Home(): JSX.Element {
         setCardListState((old) => ({ ...old, data: prodData }));
       } catch (error) {
         if (error instanceof Error) {
-          throw new Error(error.message);
+          // eslint-disable-next-line no-console
+          console.log(error);
         }
       } finally {
         setLoading(false);
