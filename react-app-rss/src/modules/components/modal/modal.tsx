@@ -40,6 +40,7 @@ function Modal(props: ModalProps) {
       <div className={cls.modal} onClick={handleCloseModal}>
         <div className={cls.overlay}>
           <div
+            className={cls['modal-window']}
             onClick={(event) => {
               event.stopPropagation();
             }}
