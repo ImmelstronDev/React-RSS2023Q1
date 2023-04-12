@@ -17,4 +17,4 @@ export const HomeContext = createContext<StartContext>({
   modalData: { isModal: false, isLoading: false, id: null },
 });
 
-export const useHomePageContext = () => useContext(HomeContext);
+export const useHomeContext = () => useContext(HomeContext);

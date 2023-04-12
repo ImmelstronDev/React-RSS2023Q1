@@ -7,7 +7,7 @@
     "dev": "npm run lint & vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest --reporter=verbose",
     "lint": "eslint src/",
     "lint:write": "eslint src/ --fix"
   },

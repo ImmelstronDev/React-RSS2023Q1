@@ -1,3 +1,4 @@
+import { useHomeContext } from '../../../pages/Home/context';
 import cls from './card.module.scss';
 
 export interface CardData {
@@ -9,6 +10,7 @@ export interface CardData {
   damage: number;
   distance: number;
   reload: number;
+  id: number;
 }
 interface CartDataProps {
   data: CardData;
@@ -16,11 +18,18 @@ interface CartDataProps {
 
 function Card(props: CartDataProps): JSX.Element {
   const {
-    data: { img, name, price, caliber, ammo, damage, distance, reload },
+    data: { img, name, price, caliber, ammo, damage, distance, reload, id },
   } = props;
 
+  const { handleOpenModal } = useHomeContext();
+
   return (
-    <div className={cls.card}>
+    <div
+      className={cls.card}
+      onClick={() => {
+        handleOpenModal(id);
+      }}
+    >
       <img src={img} alt="weapon" />
       <div className={cls.description_container}>
         <span>Name: {name}</span>
