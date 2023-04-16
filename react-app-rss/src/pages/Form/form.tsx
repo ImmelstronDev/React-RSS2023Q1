@@ -20,7 +20,6 @@ interface EL<P> {
 }
 
 export default function NewForm(): JSX.Element {
-  // const [data, setData] = useState<EL<string>[]>([]);
   const {
     register,
     handleSubmit,
@@ -35,8 +34,6 @@ export default function NewForm(): JSX.Element {
     const img = URL.createObjectURL(el.img[0]);
     const newEl: EL<string> = { ...el, img };
     dispatch(formSlice.actions.writeFormData(newEl));
-    // data.push(newEl);
-    // setData([...data]);
     reset();
   };
 

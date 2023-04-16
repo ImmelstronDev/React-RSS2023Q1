@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MutableRefObject, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, MutableRefObject, useEffect, useState } from 'react';
 import cls from './input.module.scss';
 import { useAppSelector } from '../../../hooks/redux';
 
@@ -9,21 +9,12 @@ interface InputProps {
 
 function Input(props: InputProps): JSX.Element {
   const { refValue, handleSubmit } = props;
-  const key = 'search';
   const { value } = useAppSelector((state) => state.searchReducer);
   const [searchStringValue, setValue] = useState<string>(value);
-  // const unload = useCallback(() => localStorage.setItem(key, refValue.current), [refValue]);
 
   useEffect(() => {
     refValue.current = searchStringValue;
   }, [searchStringValue, refValue]);
-
-  // useEffect(() => {
-  //   window.addEventListener('beforeunload', unload);
-  //   return () => {
-  //     window.removeEventListener('beforeunload', unload);
-  //   };
-  // }, [unload, refValue]);
 
   const handlerInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { value: searchValue } = e.target;
