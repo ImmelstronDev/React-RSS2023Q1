@@ -11,6 +11,9 @@ const dataApi = createApi({
     fetchAllCards: build.query<CardData[], string>({
       query: (value = '') => ({ url: '/', params: { q: value } }),
     }),
+    fetchModalCard: build.query<CardData[], number | null>({
+      query: (value = null) => ({ url: '/', params: { id: value } }),
+    }),
   }),
 });
 

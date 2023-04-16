@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import dataApi from '../../../api/serviceApi';
 import Portal from '../../../portal';
 import URLs from '../../../constants/urlConst';
 import { ModalState, useHomeContext } from '../../../pages/Home/context';
@@ -13,27 +14,31 @@ function Modal(props: ModalProps) {
   const {
     modalData: { id },
   } = props;
-  const [modalCardData, setModalCardData] = useState<CardData | null>(null);
-  const [isLoading, setLoading] = useState<boolean>(true);
+  // const [modalCardData, setModalCardData] = useState<CardData | null>(null);
+  // const [isLoading, setLoading] = useState<boolean>(true);
+
+  const { isFetching, data } = dataApi.useFetchModalCardQuery(id);
 
   const { handleCloseModal } = useHomeContext();
 
-  useEffect(() => {
-    const getData = async (idCard: number) => {
-      try {
-        const res = await fetch(`${URLs.BASE_URL}?id=${idCard}`);
-        const prodData = await res.json();
-        setModalCardData({ ...prodData[0] });
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    if (id && isLoading) getData(id);
-  }, [id, isLoading]);
+  // useEffect(() => {
+  //   const getData = async (idCard: number) => {
+  //     try {
+  //       const res = await fetch(`${URLs.BASE_URL}?id=${idCard}`);
+  //       const prodData = await res.json();
+  //       setModalCardData({ ...prodData[0] });
+  //     } catch (error) {
+  //       if (error instanceof Error) {
+  //         throw new Error(error.message);
+  //       }
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   if (id && isLoading) getData(id);
+  // }, [id, isLoading]);
+
+  const modalCardData = data && data.length !== 0 ? data[0] : null;
 
   return (
     <Portal>
@@ -48,7 +53,7 @@ function Modal(props: ModalProps) {
             <button type="button" className={cls.btn} onClick={handleCloseModal}>
               X
             </button>
-            {modalCardData && !isLoading && (
+            {modalCardData && !isFetching && (
               <div className={cls.card}>
                 <img src={modalCardData.img} alt="weapon" />
                 <div className={cls.description_container}>
@@ -62,7 +67,7 @@ function Modal(props: ModalProps) {
                 </div>
               </div>
             )}
-            {isLoading ? <div>Loading...</div> : false}
+            {isFetching ? <div>Loading...</div> : false}
           </div>
         </div>
       </div>
