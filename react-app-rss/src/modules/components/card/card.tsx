@@ -10,7 +10,7 @@ export interface CardData {
   damage: number;
   distance: number;
   reload: number;
-  id: number;
+  id?: number;
 }
 interface CartDataProps {
   data: CardData;
@@ -27,7 +27,7 @@ function Card(props: CartDataProps): JSX.Element {
     <div
       className={cls.card}
       onClick={() => {
-        handleOpenModal(id);
+        handleOpenModal(id!);
       }}
     >
       <img src={img} alt="weapon" />

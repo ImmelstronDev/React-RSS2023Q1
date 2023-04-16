@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { formSlice } from '../../store/reducers/FormSlice';
 import Card from '../../modules/components/card/card';
 import cls from './form.module.scss';
 
@@ -18,7 +20,7 @@ interface EL<P> {
 }
 
 export default function NewForm(): JSX.Element {
-  const [data, setData] = useState<EL<string>[]>([]);
+  // const [data, setData] = useState<EL<string>[]>([]);
   const {
     register,
     handleSubmit,
@@ -26,11 +28,15 @@ export default function NewForm(): JSX.Element {
     formState: { errors },
   } = useForm<EL<FileList>>();
 
+  const dispatch = useAppDispatch();
+  const { formData } = useAppSelector((state) => state.formReducer);
+
   const onSubmit = (el: EL<FileList>) => {
     const img = URL.createObjectURL(el.img[0]);
     const newEl: EL<string> = { ...el, img };
-    data.push(newEl);
-    setData([...data]);
+    dispatch(formSlice.actions.writeFormData(newEl));
+    // data.push(newEl);
+    // setData([...data]);
     reset();
   };
 
@@ -266,7 +272,7 @@ export default function NewForm(): JSX.Element {
         <input type="submit" />
       </form>
       <div>
-        {data.map((card) => (
+        {formData.map((card) => (
           <Card key={card.name} data={card} />
         ))}{' '}
       </div>
