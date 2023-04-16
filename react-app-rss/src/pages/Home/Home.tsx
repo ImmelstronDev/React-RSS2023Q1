@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import dataApi from '../../api/serviceApi';
 import { searchSlice } from '../../store/reducers/SearchSlice';
 import { dataSlice } from '../../store/reducers/DataSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -16,7 +17,7 @@ import { HomeContext, ModalState } from './context';
 function Home(): JSX.Element {
   // const key = 'search';
   // const [cardListState, setCardListState] = useState<CardListState>({ data: null });
-  const [isLoading, setLoading] = useState<boolean>(true);
+  // const [isLoading, setLoading] = useState<boolean>(true);
   // const [inputSearchState, setInputSearchState] = useState<string>(localStorage.getItem(key) ?? '');
   const [modalData, setModal] = useState<ModalState>({
     isModal: false,
@@ -25,33 +26,34 @@ function Home(): JSX.Element {
   });
 
   const dispatch = useAppDispatch();
-  const { cardData } = useAppSelector((state) => state.dataReducer);
+  // const { cardData } = useAppSelector((state) => state.dataReducer);
   const { value } = useAppSelector((state) => state.searchReducer);
   const refInputSearchValue = useRef<string>('');
+  const { isFetching, data } = dataApi.useFetchAllCardsQuery(value);
 
   const { isModal } = modalData;
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await fetch(`${URLs.BASE_URL}?q=${value}`);
-        const prodData = await res.json();
-        dispatch(dataSlice.actions.writeDataCard(prodData));
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, [dispatch, value]);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const res = await fetch(`${URLs.BASE_URL}?q=${value}`);
+  //       const prodData = await res.json();
+  //       dispatch(dataSlice.actions.writeDataCard(prodData));
+  //     } catch (error) {
+  //       if (error instanceof Error) {
+  //         throw new Error(error.message);
+  //       }
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getData();
+  // }, [dispatch, value]);
 
   const handleSubmit = () => {
     if (value === refInputSearchValue.current) return;
     dispatch(searchSlice.actions.writeSearch(refInputSearchValue.current));
-    setLoading(true);
+    // setLoading(true);
   };
 
   const handleOpenModal = useCallback((id: number) => {
@@ -81,7 +83,7 @@ function Home(): JSX.Element {
     <HomeContext.Provider value={initialContext}>
       <div className={cls.all_wrapper}>
         <Input refValue={refInputSearchValue} handleSubmit={handleSubmit} />
-        {isLoading ? <div>Loading...</div> : <CardList data={cardData} />}
+        {isFetching ? <div>Loading...</div> : <CardList data={data!} />}
       </div>
       {isModal && <Modal modalData={modalData} />}
     </HomeContext.Provider>
