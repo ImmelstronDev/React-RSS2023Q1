@@ -17,6 +17,6 @@
     "jsx": "react-jsx",
     "baseUrl": "./src"
   },
-  "include": [".eslintrc.cjs", "./src/**/*", "styled.d.ts", "vite.config.ts"],
+  "include": [".eslintrc.cjs", "./src/**/*", "styled.d.ts", "vite.config.ts", "server.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

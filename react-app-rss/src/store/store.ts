@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { PreloadedState, combineReducers, configureStore } from '@reduxjs/toolkit';
 import dataApi from '../api/serviceApi';
 import dataReducer from './reducers/DataSlice';
 import searchReducer from './reducers/SearchSlice';
@@ -11,10 +11,11 @@ const rootReducer = combineReducers({
   [dataApi.reducerPath]: dataApi.reducer,
 });
 
-export const setupStore = () => {
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(dataApi.middleware),
+    preloadedState,
   });
 };
 

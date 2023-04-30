@@ -1,8 +1,10 @@
 import { describe, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import React from 'react';
 
+import { BrowserRouter } from 'react-router-dom';
+import renderWithProviders from './utils/renderWithProviders';
 import AppRouter from './AppRouter';
 
 const data = [
@@ -36,7 +38,11 @@ global.fetch = vi.fn().mockResolvedValueOnce({
 
 describe('App', () => {
   it('Renders React components!', () => {
-    render(<AppRouter />);
+    renderWithProviders(
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    );
     expect(
       screen.getByRole('heading', {
         level: 1,
