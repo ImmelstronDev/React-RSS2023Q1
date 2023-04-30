@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    'cypress/globals': true,
   },
   root: true,
   extends: [
@@ -11,8 +12,17 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:cypress/recommended',
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: ['cypress/**/*.ts', 'cypress.config.ts', 'src/**/*.cy.tsx'],
+      parserOptions: {
+        project: ['cypress/tsconfig.json'],
+      },
+      extends: ['plugin:cypress/recommended'],
+    },
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -23,7 +33,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'cypress'],
   ignorePatterns: ['*.html', '*.json'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
@@ -46,5 +56,11 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'cypress/no-assigning-return-values': 'error',
+    'cypress/no-unnecessary-waiting': 'error',
+    'cypress/assertion-before-screenshot': 'warn',
+    'cypress/no-force': 'warn',
+    'cypress/no-async-tests': 'error',
+    'cypress/no-pause': 'error',
   },
 };

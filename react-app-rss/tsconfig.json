@@ -18,5 +18,6 @@
     "baseUrl": "./src"
   },
   "include": [".eslintrc.cjs", "./src/**/*", "styled.d.ts", "vite.config.ts", "server.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["node_modules", "cypress.config.ts", "src/**/*.cy.tsx"]
 }
